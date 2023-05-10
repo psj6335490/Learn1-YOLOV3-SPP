@@ -199,7 +199,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                         l = np.array([x.split() for x in f.read().splitlines()], dtype=np.float32)
                 except Exception as e:
                     print("An error occurred while loading the file {}: {}".format(file, e))
-                    nm += 1  # file missing
+                    nm += 1  # file missing 缺失标签
                     continue
 
             # 如果标注信息不为空的话
@@ -368,6 +368,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
 
     @staticmethod
     def collate_fn(batch):
+        #整理一批图片 __getitem__是一张图片（batch，item）
         img, label, path, shapes, index = zip(*batch)  # transposed
         for i, l in enumerate(label):
             l[:, 0] = i  # add target image index for build_targets()

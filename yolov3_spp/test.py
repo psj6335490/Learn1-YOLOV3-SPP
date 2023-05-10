@@ -1,8 +1,10 @@
 import torch
+import torch.nn as nn
+import numpy as np
 
-a=torch.tensor([1,2,8,6,4])
-
-b= a[[2,2,3]]
-
-print(a)
+a=[[1,2,3],
+   [4,5,6]]
+b,c,d=zip(*a)
 print(b)
+print(c)
+
